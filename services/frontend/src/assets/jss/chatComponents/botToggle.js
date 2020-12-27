@@ -1,14 +1,11 @@
-import {
-} from 'assets/jss/common.js';
-
+import { frontPageThemeColor } from 'assets/jss/common.js';
 
 const botToggle = (theme) => ({
   buttonBox: {
-      height: "100%",
-      position: 'fixed',
-      width: '25%',
-      top: '0'
-      
+    height: '100%',
+    position: 'fixed',
+    width: '25%',
+    top: '0',
   },
   leftButton: {
     left: '0',
@@ -17,12 +14,8 @@ const botToggle = (theme) => ({
     right: '0',
   },
   arrow: {
-      color: 'white',
-
+    color: theme.palette.getContrastText(frontPageThemeColor),
   },
-  tooltip: {
-
-  }
 });
 
 export default botToggle;

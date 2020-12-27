@@ -25,6 +25,13 @@ import styles from "assets/jss/chatComponents/botToggle.js";
 
 const useStyles = makeStyles(styles);
 
+const mapStateToProps = state => {
+    return {
+        hasPreviousBot: false,
+        hasNextBot: false
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         botToggle: (left) => dispatch(botToggle(left)),
@@ -35,7 +42,7 @@ const Arrow = (props) => (props.left ? <KeyboardArrowLeft {...props} /> : <Keybo
 
 const BotToggle = (props) => {
     const classes = useStyles();
-    const { left, botToggle } = props;
+    const { left, botToggle, hasPreviousBot, hasNextBot } = props;
     const botToggleClass = classNames(
         {
             [classes.buttonBox]: true,
@@ -43,9 +50,12 @@ const BotToggle = (props) => {
             [classes.rightButton]: !left,
         })
 
+    let toggleDisabled = left ? !hasPreviousBot : !hasNextBot;
+    let title = left ? "Get Previous Chatbot" : "Get Next Chatbot";
     return (
+        toggleDisabled ? null:
         <Tooltip
-            title={left ? "Get Previous Chatbot" : "Get Next Chatbot"}
+            title={title}
             placement="bottom"
             classes={{
                 tooltip: classes.tooltip
@@ -63,4 +73,4 @@ const BotToggle = (props) => {
     )
 }
 
-export default connect(null, mapDispatchToProps)(BotToggle);
+export default connect(mapStateToProps, mapDispatchToProps)(BotToggle);
