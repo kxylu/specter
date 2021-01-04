@@ -1,22 +1,47 @@
 import {
-  } from 'assets/jss/common.js';
+  rotation,
+  backgroundBase,
+  internalContainer,
+  frontPageThemeColor,
+  blockButton,
+} from 'assets/jss/common.js';
 
-  
-  const frontPage = (theme) => ({
-    frontPageContainer: {
-        height: "100%",
+import defaultBackground from 'assets/img/defaultBackground.jpg';
+
+const frontPage = (theme) => ({
+  ...rotation,
+  frontPageContainer: {
+    ...backgroundBase,
+    backgroundImage: "url('" + defaultBackground + "')",
+  },
+  internalContainer: {
+    ...internalContainer,
+  },
+  textStyle: {
+    color: theme.palette.getContrastText(frontPageThemeColor),
+    textAlign: 'center',
+  },
+
+  chatButton: {
+    marginTop: '10%',
+  },
+
+  chatIcon: {
+    fontSize: '3em',
+    '&:hover': {
+      animation: '$rotation 0.7s linear',
     },
-    internalContainer: {
-      height: "100%",
-      margin: "0 auto",
-      // position: relative
-      "@media (min-height: 400px)": {
-        marginTop: "100px",
-        marginBottom:"100px"
-      }
+  },
 
-    }
-  });
-  
-  export default frontPage;
-  
+  blockButton: {
+    ...blockButton,
+    color: theme.palette.getContrastText(frontPageThemeColor),
+
+    '&:active': {
+      border: '2px solid',
+      borderColor: theme.palette.getContrastText(frontPageThemeColor),
+    },
+  },
+});
+
+export default frontPage;

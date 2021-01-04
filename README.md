@@ -8,11 +8,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p style="text-align:center">
-  <a href="https://github.com/kxylu/chat-template">
-    <img src="documentation/assets/img/logo.png" alt="Logo" width="100" height="100" style="background-color:white;">
+  <a href="https://github.com/kxylu/specter">
+    <img src="documentation/assets/img/logo.png" alt="Logo" width="100" height="100" style="background-color:white; text-align:'center">
   </a>
 
-  <h3 style="text-align:center">Chatbot Template</h3>
+  <h3 style="text-align:center">Specter: A Chatbot Template</h3>
 
   <p style="text-align:center">
     This project is the generic template of a fullstack chatbot.

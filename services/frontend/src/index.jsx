@@ -1,24 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import store from 'js/store.js';
 import { Provider } from 'react-redux';
-import FrontPage from 'views/FrontPage/FrontPage';
+import WorkingInProgress from 'views/WorkingInProgress/WorkingInProgress';
 import ChatView from 'views/ChatView/ChatView';
 
-import 'assets/scss/material-kit-react.scss';
+import 'assets/scss/frontend.scss';
 
 var hist = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hist}>
+    <BrowserRouter history={hist}>
       <Switch>
         <Route path="/chat" component={ChatView} />
-        <Route path="/" component={FrontPage} />
+        <Route path="/" component={WorkingInProgress} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

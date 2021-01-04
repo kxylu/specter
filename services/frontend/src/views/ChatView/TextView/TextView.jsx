@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
-import { withStyles } from '@material-ui/cores/styles'
+import { withStyles } from "@material-ui/core/styles";
 import { connect } from 'react-redux'
 import styles from "assets/jss/textView.js";
+import ChatBubble  from 'components/ChatBubble/ChatBubble';
+import ChatInput  from 'components/ChatInput/ChatInput';
+import { Grid } from '@material-ui/core';
 
 const mapStateToProps = state => {
     return {
+        messageHistory: state.message.messageHistory,
+        loading: state.message.loading
     }
 }
 
@@ -15,17 +20,28 @@ const mapDispatchToProps = dispatch => {
 
 class TextView extends Component {
 
-    render = () =>
+    componentDidUpdate = () => {
+        const container = document.getElementById('chatViewContainer');
+        if (container) {
+            container.scrollTo(0, container.scrollHeight);
+        }
+    }
+
+    render ()
     {
-        return 
-            (<div>
-                <div>
-                    {/* HEADER */}
-                    {/* MuiAlert */}
-                    {/* Chat View */}
-                    {/* Control Box */}
-                </div>
-            </div>)
+        const { classes, messageHistory, loading } = this.props;
+        return (
+        <Grid item className={classes.chatGrid} >
+            <main id='chatViewContainer' className={classes.chatViewContainer}>
+                {
+                    messageHistory.map((_msg, _index) => 
+                        <ChatBubble key={_index} msg={_msg}/>)
+                }
+                { loading ? <ChatBubble loading />: null }
+            </main>
+            <ChatInput />
+        </Grid>
+)
         
     }
 }
